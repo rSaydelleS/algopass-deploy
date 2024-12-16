@@ -7,17 +7,16 @@ import fastifyCors from "@fastify/cors";
 dotenv.config();
 
 app.register(fastifyCors, {
-  origin: true,
+  origin: "*",
   methods: ["GET", "POST", "PUT"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: "Content-Type, Authorization",
   credentials: true,
-  prefix: "pass",
+  preflight: true,
 });
+app.register(Rotas, { prefix: "pass" });
 app.get("/", async (req, reply) => {
   reply.send({ message: "Bem-vindo ao servidor do sistema!" });
 });
-
-app.register(Rotas, { prefix: "pass" });
 
 try {
   app.listen({ port: PORT }, () => {
