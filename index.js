@@ -3,9 +3,7 @@ const app = Fastify({ logger: true });
 const PORT = process.env.PORT || 8080;
 import Rotas from "./src/routes/routes.js";
 import dotenv from "dotenv";
-import cors from "cors";
 import fastifyCors from "@fastify/cors";
-cors();
 dotenv.config();
 
 app.register(fastifyCors, {
